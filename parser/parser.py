@@ -32,4 +32,7 @@ for line in raw_data:
         print('Line does not match format: ', line)
 
 with open('parsed_data.json', 'wb') as out_file:
-    json.dump(parsed_list, out_file, indent=4, ensure_ascii=False)
+    for item in parsed_list:
+        out_file.write("{ \"index\": {\"_index\": \"identity\", \"_type\": \"login\"}}\n")
+        json.dump(item, out_file, ensure_ascii=False)
+        out_file.write('\n')
