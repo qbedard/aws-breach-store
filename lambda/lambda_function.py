@@ -6,7 +6,7 @@ from elasticsearch import Elasticsearch, RequestsHttpConnection
 
 
 def lambda_handler(event, context):
-    email = event['pathParameters']['email']
+
     session = boto3.session.Session()
     credentials = session.get_credentials().get_frozen_credentials()
 
@@ -28,12 +28,16 @@ def lambda_handler(event, context):
         connection_class=RequestsHttpConnection
     )
 
+    search_terms = []
+    for name, value in event['pathParameters'].items():
+        search_terms.append({'term': {name: value}})
+
     es_response = es.search(index='identity', body={
         'query': {
             'constant_score': {
                 'filter': {
-                    'term': {
-                        'email': email
+                    'bool': {
+                        'must': search_terms
                     }
                 }
             }
