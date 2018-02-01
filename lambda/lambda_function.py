@@ -34,6 +34,7 @@ def lambda_handler(event, context):
         search_terms.append({'term': {name: value}})
 
     es_response = es.search(index='identity', body={
+        'size': 10000,
         'query': {'constant_score': {
             'filter': {
                 'bool': {
