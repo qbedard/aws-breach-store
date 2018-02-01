@@ -1,0 +1,12 @@
+{
+  "mappings": {
+    "login": { 
+      "properties": { 
+        "email":    { "type": "keyword" }, 
+        "username": { "type": "keyword" }, 
+        "domain":   { "type": "keyword" },  
+        "password": { "type": "keyword" }  
+      }
+    }
+  }
+}
