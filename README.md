@@ -18,3 +18,6 @@ The API provides 4 endpoints for retrieving breach data:
 * username (the username portion of the email)
 * domain (the domain portion of the email)
 * password
+
+## The Lambda Function
+Since the scheme of the API bears a 1-to-1 relationship to the indexed fields, the Lambda function leans on the API for controlling what fields can be queried by dynamically retrieving the pathParameters and filtering the query based on the parameter names/values.
