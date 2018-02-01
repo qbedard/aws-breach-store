@@ -11,6 +11,7 @@ def lambda_handler(event, context):
     credentials = session.get_credentials().get_frozen_credentials()
 
     es_host = os.environ['ES_HOST']
+
     awsauth = AWSRequestsAuth(
         aws_access_key=credentials.access_key,
         aws_secret_access_key=credentials.secret_key,
